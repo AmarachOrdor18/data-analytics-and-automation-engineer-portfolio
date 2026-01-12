@@ -1,180 +1,191 @@
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+document.addEventListener('DOMContentLoaded', () => {
+    // Project Carousel Logic
+    class ProjectCarousel {
+        constructor(carouselId) {
+            this.track = document.getElementById(`${carouselId}-carousel`);
+            this.container = this.track.closest('.carousel-container');
+            this.items = Array.from(this.track.children);
+            this.prevBtn = this.container.querySelector('.prev');
+            this.nextBtn = this.container.querySelector('.next');
+            this.indicatorsContainer = this.container.querySelector('.carousel-indicators');
+
+            this.currentIndex = 0;
+            this.autoPlayInterval = null;
+            this.isHovered = false;
+
+            this.init();
+        }
+
+        init() {
+            // Create indicators
+            this.items.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('indicator');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => this.goToSlide(index));
+                this.indicatorsContainer.appendChild(dot);
+            });
+
+            this.indicators = Array.from(this.indicatorsContainer.children);
+
+            // Event listeners
+            this.prevBtn.addEventListener('click', () => {
+                this.prevSlide();
+                this.resetAutoPlay();
+            });
+
+            this.nextBtn.addEventListener('click', () => {
+                this.nextSlide();
+                this.resetAutoPlay();
+            });
+
+            // Touch events for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            this.track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                this.stopAutoPlay();
+            });
+
+            this.track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                this.handleSwipe(touchStartX, touchEndX);
+                this.startAutoPlay();
+            });
+
+            // Hover pause
+            this.container.addEventListener('mouseenter', () => {
+                this.isHovered = true;
+                this.stopAutoPlay();
+            });
+
+            this.container.addEventListener('mouseleave', () => {
+                this.isHovered = false;
+                this.startAutoPlay();
+            });
+
+            // Start auto play
+            this.startAutoPlay();
+        }
+
+        handleSwipe(start, end) {
+            if (start - end > 50) this.nextSlide();
+            if (end - start > 50) this.prevSlide();
+        }
+
+        updateCarousel() {
+            this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+
+            // Update items active state
+            this.items.forEach((item, index) => {
+                if (index === this.currentIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Update indicators
+            this.indicators.forEach((dot, index) => {
+                if (index === this.currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
             });
         }
-    });
-});
 
-// Navbar scroll effect
-let lastScroll = 0;
-const nav = document.querySelector('.nav');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        nav.style.boxShadow = 'none';
-    } else {
-        nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
-    }
-    
-    lastScroll = currentScroll;
-});
-
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+        nextSlide() {
+            this.currentIndex = (this.currentIndex + 1) % this.items.length;
+            this.updateCarousel();
         }
-    });
-}, observerOptions);
 
-// Add fade-in class to elements and observe them
-const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.project-card, .about-card, .skill-category, .contact-card');
-    elements.forEach((el, index) => {
-        el.classList.add('fade-in');
-        el.style.transitionDelay = `${index * 0.1}s`;
-        observer.observe(el);
-    });
-};
-
-// Initialize animations when DOM is loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', animateOnScroll);
-} else {
-    animateOnScroll();
-}
-
-// Add parallax effect to hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
-
-// Cursor trail effect (optional, subtle)
-const createCursorTrail = () => {
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-    
-    const animateCursor = () => {
-        cursorX += (mouseX - cursorX) * 0.1;
-        cursorY += (mouseY - cursorY) * 0.1;
-        requestAnimationFrame(animateCursor);
-    };
-    
-    animateCursor();
-};
-
-// Initialize cursor trail on desktop only
-if (window.innerWidth > 768) {
-    createCursorTrail();
-}
-
-// Add active state to navigation based on scroll position
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
+        prevSlide() {
+            this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+            this.updateCarousel();
         }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
 
-// Add typing effect to hero title (optional)
-const typeWriter = (element, text, speed = 100) => {
-    let i = 0;
-    element.textContent = '';
-    
-    const type = () => {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
+        goToSlide(index) {
+            this.currentIndex = index;
+            this.updateCarousel();
+            this.resetAutoPlay();
         }
-    };
-    
-    type();
-};
 
-// Lazy load images if any are added
-const lazyLoadImages = () => {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                imageObserver.unobserve(img);
+        startAutoPlay() {
+            if (this.autoPlayInterval) return;
+            this.autoPlayInterval = setInterval(() => {
+                if (!this.isHovered) this.nextSlide();
+            }, 5000);
+        }
+
+        stopAutoPlay() {
+            if (this.autoPlayInterval) {
+                clearInterval(this.autoPlayInterval);
+                this.autoPlayInterval = null;
             }
+        }
+
+        resetAutoPlay() {
+            this.stopAutoPlay();
+            this.startAutoPlay();
+        }
+    }
+
+    // Initialize Project Carousels
+    new ProjectCarousel('analytics');
+    new ProjectCarousel('automation');
+
+    // Skills Carousel Logic
+    class SkillsCarousel {
+        constructor() {
+            this.track = document.getElementById('skills-track');
+            this.categories = Array.from(this.track.children);
+            this.prevBtn = document.getElementById('skills-prev');
+            this.nextBtn = document.getElementById('skills-next');
+            this.currentIndex = 0;
+
+            this.init();
+        }
+
+        init() {
+            // Event listeners
+            this.prevBtn.addEventListener('click', () => this.prevSlide());
+            this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+            // Initial state
+            this.updateCarousel();
+        }
+
+        updateCarousel() {
+            // Remove active class from all
+            this.categories.forEach(cat => cat.classList.remove('active'));
+
+            // Add active class to current
+            this.categories[this.currentIndex].classList.add('active');
+        }
+
+        nextSlide() {
+            this.currentIndex = (this.currentIndex + 1) % this.categories.length;
+            this.updateCarousel();
+        }
+
+        prevSlide() {
+            this.currentIndex = (this.currentIndex - 1 + this.categories.length) % this.categories.length;
+            this.updateCarousel();
+        }
+    }
+
+    // Initialize Skills Carousel
+    new SkillsCarousel();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
-    
-    images.forEach(img => imageObserver.observe(img));
-};
-
-lazyLoadImages();
-
-// Add smooth reveal animation to project cards on hover
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-    });
 });
-
-// Performance optimization: Debounce scroll events
-const debounce = (func, wait = 10) => {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-};
-
-// Apply debounce to scroll handlers
-window.addEventListener('scroll', debounce(() => {
-    // Scroll handlers here
-}, 10));
-
-console.log('Portfolio loaded successfully! 🚀');

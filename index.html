@@ -56,25 +56,50 @@
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
+
+            <div class="about-intro">
+                <p>I’m Amarachi. I believe data should bring clarity, not confusion, and technology should give you
+                    time, not take it away. I combine engineering with empathy to build systems that truly support the
+                    people using them.</p>
+            </div>
+
             <div class="about-grid">
                 <div class="about-card">
-                    <div class="about-icon">💡</div>
-                    <h3>Personal Motivation</h3>
-                    <p>Driven by the balance between logic and empathy, I find fulfillment in creating dashboards that
-                        answer long-standing team questions and building systems that free people from repetitive tasks.
+                    <div class="about-icon">
+                        <!-- Lightbulb/Innovation Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3>Insight & Clarity</h3>
+                    <p>Data can be overwhelming. I turn that noise into clear, friendly dashboards that give you peace
+                        of mind and the confidence to make the right decisions without the headache.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <!-- Target/Strategy Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3>Freedom to Focus</h3>
+                    <p>Nobody enjoys repetitive drudgery. I build reliable automations that handle the busywork for you,
+                        giving you and your team the breathing room to focus on the meaningful work you actually love.
                     </p>
                 </div>
                 <div class="about-card">
-                    <div class="about-icon">🎯</div>
-                    <h3>Problem-Solving Approach</h3>
-                    <p>When faced with challenges like inconsistent data formats in FinSight Nexus, I build smart
-                        validation layers that ensure data integrity while maintaining system flexibility.</p>
-                </div>
-                <div class="about-card">
-                    <div class="about-icon">🚀</div>
-                    <h3>Career Goals</h3>
-                    <p>Aiming to become a Data Automation Engineer bridging the gap between data analysis and workflow
-                        design within the next 2-3 years, creating systems that truly serve people.</p>
+                    <div class="about-icon">
+                        <!-- Rocket/Growth Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3>Building Together</h3>
+                    <p>Technology should work for you, not against you. I bridge the gap between complex code and your
+                        real-world goals, creating tools that feel like a natural, helpful extension of your team.</p>
                 </div>
             </div>
         </div>
@@ -84,214 +109,299 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
-            <p class="section-subtitle">Automation & Data Analytics Solutions</p>
 
-            <div class="projects-grid">
-                <!-- Data Analysis Projects First -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>LinkedIn Data Analyst Job Analysis</h3>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag">Power BI</span>
+            <!-- Data Analytics Projects -->
+            <div class="project-category">
+                <h3 class="category-title">Data Analytics Projects</h3>
+                <div class="carousel-container">
+                    <button class="carousel-nav prev" data-carousel="analytics" aria-label="Previous project">
+                        <span>‹</span>
+                    </button>
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="analytics-carousel">
+                            <!-- Analytics Project 1 -->
+                            <div class="carousel-item active">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>LinkedIn Data Analyst Job Analysis</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">Python</span>
+                                            <span class="tag">SQL</span>
+                                            <span class="tag">Power BI</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Comprehensive analysis of data analyst job market
+                                        trends on LinkedIn,
+                                        identifying key skills, salary ranges, and hiring patterns.</p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/AmarachOrdor18/DataLynJobz" class="project-link"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <span>💻</span> GitHub Repository
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analytics Project 2 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>Abia State Election Outlier Detection</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">Python</span>
+                                            <span class="tag">Power BI</span>
+                                            <span class="tag">Statistical Analysis</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Statistical analysis and visualization of election
+                                        data to identify
+                                        anomalies and patterns in voting behavior.</p>
+                                    <div class="project-links">
+                                        <a href="https://app.powerbi.com/view?r=eyJrIjoiYWVjNDg4NGYtYjViZC00Yzc2LWJmYTQtZjJmOTc1NTM1NmIyIiwidCI6Ijg3MzQ4NzM5LTg0MzUtNDY1Ni05ODZhLWZjM2I0YzRjMTViNyJ9"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>📊</span> Power BI Dashboard
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analytics Project 3 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>Stock Market Flow Analysis</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">Python</span>
+                                            <span class="tag">Pandas</span>
+                                            <span class="tag">NumPy</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Real-time analysis of stock market trends and
+                                        patterns using advanced
+                                        data processing techniques.</p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/AmarachOrdor18/Market_Flow_Analytics"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>💻</span> GitHub Repository
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analytics Project 4 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>NeuroDrug Permeability ML</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">Python</span>
+                                            <span class="tag">scikit-learn</span>
+                                            <span class="tag">Machine Learning</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Machine learning model to predict drug permeability
+                                        across the
+                                        blood-brain barrier for neurological applications.</p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/AmarachOrdor18/NeuroDrug-Permeability-ML"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>💻</span> GitHub Repository
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analytics Project 5 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>DataOps Copilot</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">Python</span>
+                                            <span class="tag">Apache Airflow</span>
+                                            <span class="tag">FastAPI</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">AI-powered assistant for DataOps workflows,
+                                        automating pipeline
+                                        management and data quality checks.</p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/AmarachOrdor18/dataops-copilot" class="project-link"
+                                            target="_blank" rel="noopener noreferrer">
+                                            <span>💻</span> GitHub Repository
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class="project-description">Comprehensive analysis of data analyst job market trends on LinkedIn,
-                        identifying key skills, salary ranges, and hiring patterns.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/AmarachOrdor18/DataLynJobz" class="project-link" target="_blank"
-                            rel="noopener noreferrer">
-                            <span>💻</span> GitHub Repository
-                        </a>
-                    </div>
+                    <button class="carousel-nav next" data-carousel="analytics" aria-label="Next project">
+                        <span>›</span>
+                    </button>
+                    <div class="carousel-indicators" id="analytics-indicators"></div>
                 </div>
+            </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Abia State Election Outlier Detection</h3>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Power BI</span>
-                            <span class="tag">Statistical Analysis</span>
+            <!-- Automation Projects -->
+            <div class="project-category">
+                <h3 class="category-title">Automation Solutions</h3>
+                <div class="carousel-container">
+                    <button class="carousel-nav prev" data-carousel="automation" aria-label="Previous project">
+                        <span>‹</span>
+                    </button>
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="automation-carousel">
+                            <!-- Automation Project 1 -->
+                            <div class="carousel-item active">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>Invoice Inbox Automation</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">Make</span>
+                                            <span class="tag">AI</span>
+                                            <span class="tag">Google Sheets</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Automated invoice handling for Novus Realty using AI
+                                        to extract
+                                        data
+                                        from emails into Google Sheets, eliminating manual data entry and reducing
+                                        processing time by
+                                        90%.</p>
+                                    <div class="project-links">
+                                        <a href="https://www.notion.so/amarachiordor1/Invoice-Inbox-Automation-2974f20c06b5814baf41fb5c460b736b?source=copy_link"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>📄</span> 1-Page Explainer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Automation Project 2 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>Reporting & Dashboard Automation</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">Airtable</span>
+                                            <span class="tag">Make</span>
+                                            <span class="tag">Power BI</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Streamlined end-of-year performance reporting by
+                                        automatically
+                                        pulling metrics into Airtable, creating real-time dashboards that provide
+                                        instant
+                                        insights.</p>
+                                    <div class="project-links">
+                                        <a href="https://www.notion.so/amarachiordor1/Reporting-Dashboard-Automation-2974f20c06b5814c83f6caf5cd6b59d9?source=copy_link"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>📄</span> 1-Page Explainer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Automation Project 3 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>Proposal Generation & Delivery</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">Airtable</span>
+                                            <span class="tag">n8n</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Effortless proposal creation after discovery calls to
+                                        maintain
+                                        consistency and speed, reducing proposal generation time from hours to minutes.
+                                    </p>
+                                    <div class="project-links">
+                                        <a href="https://www.notion.so/amarachiordor1/Proposal-Generation-Delivery-Automation-2974f20c06b58146b7b1f66c251b2c41?source=copy_link"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>📄</span> 1-Page Explainer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Automation Project 4 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>Content Gen & Publishing</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">n8n</span>
+                                            <span class="tag">Airtable</span>
+                                            <span class="tag">Telegram Bot</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">A seamless workflow from brainstorming to
+                                        multi-platform
+                                        publishing
+                                        (LinkedIn/X), enabling consistent content creation and distribution.</p>
+                                    <div class="project-links">
+                                        <a href="https://www.notion.so/amarachiordor1/Content-Generation-and-Publishing-automation-2974f20c06b58192bd03df2305277c6d?source=copy_link"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>📄</span> 1-Page Explainer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Automation Project 5 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>Lead Generation & Outreach</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">n8n</span>
+                                            <span class="tag">Airtable</span>
+                                            <span class="tag">Apify</span>
+                                            <span class="tag">LinkedIn</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Scalable outreach system for connecting founders with
+                                        automation
+                                        assistants, automating lead discovery and personalized outreach at scale.</p>
+                                    <div class="project-links">
+                                        <a href="https://www.notion.so/amarachiordor1/Lead-Generation-and-Outreach-Automation-2974f20c06b581158a5fcde0e54aa233?source=copy_link"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>📄</span> 1-Page Explainer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Automation Project 6 -->
+                            <div class="carousel-item">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <h3>FinSight Nexus</h3>
+                                        <div class="project-tags">
+                                            <span class="tag">n8n</span>
+                                            <span class="tag">Airtable</span>
+                                            <span class="tag">Slack</span>
+                                        </div>
+                                    </div>
+                                    <p class="project-description">Real-time financial reporting for Stocks, Crypto, and
+                                        Exchange
+                                        Rates
+                                        with smart data validation layers ensuring accuracy and reliability.</p>
+                                    <div class="project-links">
+                                        <a href="https://www.notion.so/amarachiordor1/Fin-sight-Nexus-2974f20c06b580cda2a9cf86532788c6?source=copy_link"
+                                            class="project-link" target="_blank" rel="noopener noreferrer">
+                                            <span>📄</span> 1-Page Explainer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class="project-description">Statistical analysis and visualization of election data to identify
-                        anomalies and patterns in voting behavior.</p>
-                    <div class="project-links">
-                        <a href="https://app.powerbi.com/view?r=eyJrIjoiYWVjNDg4NGYtYjViZC00Yzc2LWJmYTQtZjJmOTc1NTM1NmIyIiwidCI6Ijg3MzQ4NzM5LTg0MzUtNDY1Ni05ODZhLWZjM2I0YzRjMTViNyJ9"
-                            class="project-link" target="_blank" rel="noopener noreferrer">
-                            <span>📊</span> Power BI Dashboard
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Stock Market Flow Analysis</h3>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Pandas</span>
-                            <span class="tag">NumPy</span>
-                        </div>
-                    </div>
-                    <p class="project-description">Real-time analysis of stock market trends and patterns using advanced
-                        data processing techniques.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/AmarachOrdor18/Market_Flow_Analytics" class="project-link"
-                            target="_blank" rel="noopener noreferrer">
-                            <span>💻</span> GitHub Repository
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>NeuroDrug Permeability ML</h3>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">scikit-learn</span>
-                            <span class="tag">Machine Learning</span>
-                        </div>
-                    </div>
-                    <p class="project-description">Machine learning model to predict drug permeability across the
-                        blood-brain barrier for neurological applications.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/AmarachOrdor18/NeuroDrug-Permeability-ML" class="project-link"
-                            target="_blank" rel="noopener noreferrer">
-                            <span>💻</span> GitHub Repository
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>DataOps Copilot</h3>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Apache Airflow</span>
-                            <span class="tag">FastAPI</span>
-                        </div>
-                    </div>
-                    <p class="project-description">AI-powered assistant for DataOps workflows, automating pipeline
-                        management and data quality checks.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/AmarachOrdor18/dataops-copilot" class="project-link" target="_blank"
-                            rel="noopener noreferrer">
-                            <span>💻</span> GitHub Repository
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Automation Projects -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Invoice Inbox Automation</h3>
-                        <div class="project-tags">
-                            <span class="tag">Make</span>
-                            <span class="tag">AI</span>
-                            <span class="tag">Google Sheets</span>
-                        </div>
-                    </div>
-                    <p class="project-description">Automated invoice handling for Novus Realty using AI to extract data
-                        from emails into Google Sheets, eliminating manual data entry and reducing processing time by
-                        90%.</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <span>📄</span> 1-Page Explainer
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Reporting & Dashboard Automation</h3>
-                        <div class="project-tags">
-                            <span class="tag">Airtable</span>
-                            <span class="tag">Make</span>
-                            <span class="tag">Power BI</span>
-                        </div>
-                    </div>
-                    <p class="project-description">Streamlined end-of-year performance reporting by automatically
-                        pulling metrics into Airtable, creating real-time dashboards that provide instant insights.</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <span>📄</span> 1-Page Explainer
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Proposal Generation & Delivery Automation</h3>
-                        <div class="project-tags">
-                            <span class="tag">Airtable</span>
-                            <span class="tag">n8n</span>
-                        </div>
-                    </div>
-                    <p class="project-description">Effortless proposal creation after discovery calls to maintain
-                        consistency and speed, reducing proposal generation time from hours to minutes.</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <span>📄</span> 1-Page Explainer
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Content Generation & Publishing Automation</h3>
-                        <div class="project-tags">
-                            <span class="tag">n8n</span>
-                            <span class="tag">Airtable</span>
-                            <span class="tag">Telegram Bot</span>
-                        </div>
-                    </div>
-                    <p class="project-description">A seamless workflow from brainstorming to multi-platform publishing
-                        (LinkedIn/X), enabling consistent content creation and distribution.</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <span>📄</span> 1-Page Explainer
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Lead Generation & Outreach Automation</h3>
-                        <div class="project-tags">
-                            <span class="tag">n8n</span>
-                            <span class="tag">Airtable</span>
-                            <span class="tag">Apify</span>
-                            <span class="tag">LinkedIn</span>
-                        </div>
-                    </div>
-                    <p class="project-description">Scalable outreach system for connecting founders with automation
-                        assistants, automating lead discovery and personalized outreach at scale.</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                            <span>📄</span> 1-Page Explainer
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>FinSight Nexus</h3>
-                        <div class="project-tags">
-                            <span class="tag">n8n</span>
-                            <span class="tag">Airtable</span>
-                            <span class="tag">Slack</span>
-                        </div>
-                    </div>
-                    <p class="project-description">Real-time financial reporting for Stocks, Crypto, and Exchange Rates
-                        with smart data validation layers ensuring accuracy and reliability.</p>
-                    <div class="project-links">
-                        <a href="https://amarachiordor1.notion.site/Fin-sight-Nexus-2974f20c06b580cda2a9cf86532788c6"
-                            class="project-link" target="_blank" rel="noopener noreferrer">
-                            <span>📄</span> 1-Page Explainer
-                        </a>
-                    </div>
+                    <button class="carousel-nav next" data-carousel="automation" aria-label="Next project">
+                        <span>›</span>
+                    </button>
+                    <div class="carousel-indicators" id="automation-indicators"></div>
                 </div>
             </div>
         </div>
@@ -301,51 +411,59 @@
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Programming & Data</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Scala</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">NumPy</span>
+            <div class="skills-carousel-container">
+                <button class="carousel-nav prev" id="skills-prev" aria-label="Previous skill category">
+                    <span>‹</span>
+                </button>
+                <div class="skills-track" id="skills-track">
+                    <div class="skill-category active">
+                        <h3>Programming & Data</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Scala</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">NumPy</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Data Processing</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Apache Spark</span>
+                            <span class="skill-tag">Apache Kafka</span>
+                            <span class="skill-tag">Apache Airflow</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Automation & Integration</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">n8n</span>
+                            <span class="skill-tag">Make</span>
+                            <span class="skill-tag">Airtable</span>
+                            <span class="skill-tag">Apify</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Visualization & BI</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">Streamlit</span>
+                            <span class="skill-tag">Google Sheets</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Machine Learning</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">scikit-learn</span>
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">AI Integration</span>
+                        </div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Data Processing</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Apache Spark</span>
-                        <span class="skill-tag">Apache Kafka</span>
-                        <span class="skill-tag">Apache Airflow</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Automation & Integration</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">n8n</span>
-                        <span class="skill-tag">Make</span>
-                        <span class="skill-tag">Airtable</span>
-                        <span class="skill-tag">Apify</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Visualization & BI</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Streamlit</span>
-                        <span class="skill-tag">Google Sheets</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Machine Learning</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">scikit-learn</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">AI Integration</span>
-                    </div>
-                </div>
+                <button class="carousel-nav next" id="skills-next" aria-label="Next skill category">
+                    <span>›</span>
+                </button>
             </div>
         </div>
     </section>

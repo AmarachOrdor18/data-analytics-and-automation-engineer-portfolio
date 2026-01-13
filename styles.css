@@ -525,6 +525,10 @@ section {
     margin-bottom: 0.75rem;
 }
 
+.project-header {
+    margin-bottom: 1.5rem;
+}
+
 .tag {
     background: rgba(201, 169, 97, 0.1);
     color: var(--accent-gold);
@@ -533,6 +537,7 @@ section {
     border-radius: 4px;
     font-size: 0.8125rem;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .project-description {
@@ -654,6 +659,7 @@ section {
     border-radius: 6px;
     font-size: 0.875rem;
     font-weight: 500;
+    white-space: nowrap;
     border: 1px solid var(--border-subtle);
     transition: all var(--transition);
 }

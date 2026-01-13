@@ -4,29 +4,67 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor(carouselId) {
             this.track = document.getElementById(`${carouselId}-carousel`);
             this.container = this.track.closest('.carousel-container');
-            this.items = Array.from(this.track.children);
+            // Store original length before cloning
+            this.originalItems = Array.from(this.track.children);
+            this.itemsLength = this.originalItems.length;
+
             this.prevBtn = this.container.querySelector('.prev');
             this.nextBtn = this.container.querySelector('.next');
             this.indicatorsContainer = this.container.querySelector('.carousel-indicators');
 
-            this.currentIndex = 0;
+            this.currentIndex = 1; // Start at 1 because of the clone
             this.autoPlayInterval = null;
             this.isHovered = false;
+            this.isTransitioning = false;
 
             this.init();
         }
 
         init() {
-            // Create indicators
-            this.items.forEach((_, index) => {
+            // Create indicators based on original items
+            this.originalItems.forEach((_, index) => {
                 const dot = document.createElement('div');
                 dot.classList.add('indicator');
                 if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => this.goToSlide(index));
+                dot.addEventListener('click', () => this.goToSlide(index + 1));
                 this.indicatorsContainer.appendChild(dot);
             });
 
             this.indicators = Array.from(this.indicatorsContainer.children);
+
+            // Clone first and last items
+            const firstClone = this.originalItems[0].cloneNode(true);
+            const lastClone = this.originalItems[this.itemsLength - 1].cloneNode(true);
+
+            firstClone.setAttribute('id', 'first-clone');
+            lastClone.setAttribute('id', 'last-clone');
+
+            this.track.appendChild(firstClone);
+            this.track.insertBefore(lastClone, this.originalItems[0]);
+
+            // Update items list to include clones
+            this.items = Array.from(this.track.children);
+
+            // Set initial position
+            this.track.style.transform = `translateX(-${100}%)`;
+
+            // Transition End Listener
+            this.track.addEventListener('transitionend', () => {
+                this.isTransitioning = false;
+                if (this.items[this.currentIndex].id === 'last-clone') {
+                    this.track.style.transition = 'none';
+                    this.currentIndex = this.items.length - 2;
+                    this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+                } else if (this.items[this.currentIndex].id === 'first-clone') {
+                    this.track.style.transition = 'none';
+                    this.currentIndex = 1; // itemsLength - 2; was actually incorrect logic usually, wait. 
+                    // If we are at first-clone (which is a clone of index 0), we want to jump to index 1 (original index 0)
+                    // Wait, usually: [LastClone, 0, 1, 2, FirstClone]
+                    // If at FirstClone (index 4), jump to 0 (index 1).
+                    this.currentIndex = 1;
+                    this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+                }
+            });
 
             // Event listeners
             this.prevBtn.addEventListener('click', () => {
@@ -75,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         updateCarousel() {
+            this.track.style.transition = 'transform 0.5s ease-in-out';
             this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
 
             // Update items active state
@@ -86,9 +125,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Update indicators
+            // Update indicators - normalized index
+            // If current is last-clone (index 0), then real index is last item
+            // If current is first-clone (index N+1), then real index is first item
+            // Otherwise real index is currentIndex - 1
+            let realIndex = this.currentIndex - 1;
+            if (this.currentIndex === 0) realIndex = this.itemsLength - 1;
+            if (this.currentIndex === this.items.length - 1) realIndex = 0;
+
             this.indicators.forEach((dot, index) => {
-                if (index === this.currentIndex) {
+                if (index === realIndex) {
                     dot.classList.add('active');
                 } else {
                     dot.classList.remove('active');
@@ -97,16 +143,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         nextSlide() {
-            this.currentIndex = (this.currentIndex + 1) % this.items.length;
+            if (this.isTransitioning) return;
+            if (this.currentIndex >= this.items.length - 1) return;
+            this.isTransitioning = true;
+            this.currentIndex++;
             this.updateCarousel();
         }
 
         prevSlide() {
-            this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+            if (this.isTransitioning) return;
+            if (this.currentIndex <= 0) return;
+            this.isTransitioning = true;
+            this.currentIndex--;
             this.updateCarousel();
         }
 
         goToSlide(index) {
+            if (this.isTransitioning) return;
             this.currentIndex = index;
             this.updateCarousel();
             this.resetAutoPlay();

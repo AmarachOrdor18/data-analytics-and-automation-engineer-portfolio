@@ -252,12 +252,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Smooth scroll for anchor links
+    // Smooth scroll with custom easing
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (!targetElement) return;
+
+            const headerOffset = 80; // Matches scroll-padding-top
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            const startPosition = window.pageYOffset;
+            const distance = offsetPosition - startPosition;
+            const duration = 1000; // ms
+            let start = null;
+
+            // Easing function: easeInOutCubic
+            // t: current time, b: start value, c: change in value, d: duration
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+
+                // Cap progress at duration to prevent overshooting
+                const timeElapsed = Math.min(progress, duration);
+
+                window.scrollTo(0, easeInOutCubic(timeElapsed, startPosition, distance, duration));
+
+                if (progress < duration) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    // Update URL hash without jumping
+                    history.pushState(null, null, targetId);
+                }
+            }
+
+            window.requestAnimationFrame(step);
+
+            // Close mobile menu if open
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks && navLinks.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
         });
     });
 });
